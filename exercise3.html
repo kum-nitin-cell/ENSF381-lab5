@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab5 - Exercise 1</title>
+</head>
+<body>
+    <input type="text" id="textInput" placeholder="Enter User ID..."/>
+    <label id="textLabel"></label><br>
+    <button id="redButton">Red</button>
+    <button id="blueButton">Blue</button>
+    <button id="greenButton">Green</button>
+    <button id="orangeButton">Orange</button>
+    <button id="purpleButton">Purple</button>
+
+    <script type="text/javascript">
+        // Fetch all user data from the API
+        async function retrieveData() {
+            try {
+                
+                const response = await fetch('https://67c1fdf161d8935867e50525.mockapi.io/users_API');
+                const users = await response.json();
+                console.log(users)   // just for own reference can be comment out if not used.
+                return users;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                return [];
+            }
+        }
+
+        document.getElementById('textInput').addEventListener('keydown', async function(event) {
+            if (event.key === 'Enter') {
+                const userId = event.target.value;
+                console.log(userId)
+                const users = await retrieveData();
+                const user = users.find(u => u.id === (userId));
+
+                if (user) {
+                    document.getElementById('textLabel').textContent = `ID: ${user.id}, Name: ${user.first_name}, Group: ${user.user_group}`;
+                } else {
+                    document.getElementById('textLabel').textContent = 'No users found with the provided User ID.';
+                }
+                event.target.value = '';
+            }
+        });
+
+        document.getElementById('redButton').addEventListener('click', function() {
+            document.getElementById('textLabel').style.color = 'red';
+        });
+
+        document.getElementById('blueButton').addEventListener('click', function() {
+            document.getElementById('textLabel').style.color = 'blue';
+        });
+
+        document.getElementById('greenButton').addEventListener('click', function() {
+            document.getElementById('textLabel').style.color = 'green';
+        });
+
+        document.getElementById('orangeButton').addEventListener('click', function() {
+            document.getElementById('textLabel').style.color = 'orange';
+        });
+
+        document.getElementById('purpleButton').addEventListener('click', function() {
+            document.getElementById('textLabel').style.color = 'purple';
+        });
+    </script>
+</body>
+</html>
