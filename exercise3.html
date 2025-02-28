@@ -4,7 +4,7 @@
     <title>Lab5 - Exercise 3</title>
 </head>
 <body>
-    <input type="text" id="textInput" placeholder="Enter User ID..."/>
+    <input type="text" id="textInput" placeholder="Enter a user number(1-30)"/>
     <label id="textLabel"></label><br>
     <button id="redButton">Red</button>
     <button id="blueButton">Blue</button>
@@ -35,9 +35,9 @@
                 const user = users.find(u => u.id === (userId)); /// have tried converting into int using parseint didn't work left asis.
 
                 if (user) {
-                    document.getElementById('textLabel').textContent = `ID: ${user.id}, Name: ${user.first_name}, Group: ${user.user_group}`;
-                } else {
-                    document.getElementById('textLabel').textContent = 'No users found with the provided User ID.';
+                    document.getElementById('textLabel').textContent = `ID: ${user.id}, Name: ${user.name}, Group: ${user.user_group}`;
+                } else{
+                    document.getElementById('textLabel').textContent = `No users found with the provided UserID`;
                 }
                 event.target.value = '';
             }
