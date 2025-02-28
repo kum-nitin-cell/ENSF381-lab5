@@ -32,7 +32,7 @@
                 const userId = event.target.value;
                 console.log(userId)
                 const users = await retrieveData();
-                const user = users.find(u => u.id === (userId));
+                const user = users.find(u => u.id === (userId)); /// have tried converting into int using parseint didn't work left asis.
 
                 if (user) {
                     document.getElementById('textLabel').textContent = `ID: ${user.id}, Name: ${user.first_name}, Group: ${user.user_group}`;
